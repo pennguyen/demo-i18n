@@ -18,10 +18,17 @@ function Post() {
 
 export default Post
 
-export const getStaticPaths = async () => ({
-  paths: [],
-  fallback: true
-})
+export async function getStaticPaths() {
+
+  const ids = ['123', '456'];
+  const paths = [];
+  ids.forEach(id => {
+    paths.push({params: { id }, locale: 'en'})
+    paths.push({params: { id }, locale: 'de'})
+  });
+  return { paths, fallback: true };
+};
+
 export const getStaticProps = async ({ locale }) => ({
   props: {
     ...await serverSideTranslations(locale, ['common']),
