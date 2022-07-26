@@ -8,12 +8,6 @@ export default async function subsidizeApi(req, res){
    * Lấy danh sách
    */
   if (req.method === 'GET') {
-    // get total data
-    if (req.query.getTotal) {
-      const total = await LogicSubsidize.getTotal(req.query);
-      return res.status(200).json(total);
-    }
-
     // get data by id
     if (req.query.findById) {
       const item = await LogicSubsidize.findById(req.query.id);

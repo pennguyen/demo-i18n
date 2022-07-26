@@ -57,7 +57,7 @@ const Homepage = () => {
               {t('to-second-page')}
             </button>
           </Link>
-          <Link href='/acbd'>
+          <Link href='/post'>
             <button
               type='button'
             >
