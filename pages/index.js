@@ -57,6 +57,13 @@ const Homepage = () => {
               {t('to-second-page')}
             </button>
           </Link>
+          <Link href='/acbd'>
+            <button
+              type='button'
+            >
+              acbd page
+            </button>
+          </Link>
         </div>
       </main>
       <Footer />
