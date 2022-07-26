@@ -36,6 +36,7 @@ function Post() {
     if (!id) return;
     const fetchData = async () => {
       const res = await axios.get(`/api/subsidize/${id}`);
+      console.log(res)
       setDetail(res.data);
     };
 
