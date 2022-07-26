@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -16,6 +16,7 @@ function Post() {
   const router = useRouter();
   const { t } = useTranslation('common');
   const { id } = router.query;
+  const [data, setDetail] = useState()
 
   const insert = async () => {
     try {
@@ -31,10 +32,22 @@ function Post() {
   }
 
 
+  useEffect(() => {
+    if (!id) return;
+    const fetchData = async () => {
+      const res = await axios.get(`/api/subsidize/${id}`);
+      setDetail(res.data);
+    };
+
+    fetchData();
+  }, [id]);
+
+
   return (
     <div>
       <h3 style={{ minHeight: 70 }}>Post {id}</h3>
       <h2> {t('back-to-home')}</h2>
+      <div>{data && JSON.stringify(data)}</div>
       <button onClick={insert}>Insert data </button>
     </div>
   );
