@@ -8,7 +8,7 @@ import { baseUrl } from '../../utils/dbConnect';
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 const HomepagePost = ({listPost}) => {
-  const { data, error } = useSWR('/api/post', fetcher)
+  const { data, error } = useSWR('/api/people', fetcher)
 
 
   const router = useRouter()
