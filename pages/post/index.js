@@ -3,10 +3,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import dbConnect from '../../utils/dbConnect'
-import ModelSubsidize from '../../models/Subsidize';
 
-const HomepagePost = ({posts}) => {
+const HomepagePost = ({listPost}) => {
 
   const router = useRouter()
   const { t } = useTranslation('common')
@@ -31,17 +29,19 @@ const HomepagePost = ({posts}) => {
         <div>{data && JSON.stringify(data)}</div>
         <h3 style={{ minHeight: 70 }}>List Post</h3>
 
-        <div>{posts && JSON.stringify(posts)}</div>
+        <div>{listPost && JSON.stringify(listPost)}</div>
     </main>
   )
 }
+
+
 export async function getStaticProps({ locale }){
-  await dbConnect();
-  const data = await ModelSubsidize.find().lean();
+  const res = await fetch('http://localhost:3000/api/subsidize')
+  const posts = await res.json()
 
   return {
     props: {
-      posts: JSON.parse(JSON.stringify(data)),
+      listPost: posts,
       ...await serverSideTranslations(locale, ['common']),
     },
   }
