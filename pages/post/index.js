@@ -37,12 +37,12 @@ const HomepagePost = ({listPost}) => {
 
 
 export async function getStaticProps({ locale }){
-  const res = await fetch(`${baseUrl}api/subsidize`)
-  const posts = await res.json()
+  // const res = await fetch(`${baseUrl}api/subsidize`)
+  // const posts = await res.json()
 
   return {
     props: {
-      listPost: posts,
+      // listPost: posts,
       ...await serverSideTranslations(locale, ['common']),
     },
   }
