@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "mongoose": "^6.4.7",
-    "next": "12.2.2",
+    "mongoose": "^6.5.0",
+    "next": "latest",
     "next-i18next": "11.2.2",
     "prop-types": "15.8.1",
     "react": "18.2.0",
