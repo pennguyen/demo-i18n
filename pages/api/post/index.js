@@ -1,12 +1,6 @@
 import * as LogicSubsidize from '../../../logics/Subsidize';
 
 export default async function subsidizeApi(req, res){
-  setTimeout(() => {
-    // console.log(req, res)
-  }, 2000);
-  /**
-   * Lấy danh sách
-   */
   if (req.method === 'GET') {
     // get data by id
     if (req.query.findById) {

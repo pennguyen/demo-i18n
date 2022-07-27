@@ -1,26 +1,22 @@
 import React, {useEffect, useState} from 'react';
+import useSWR from 'swr'
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { baseUrl } from '../../utils/dbConnect';
 
+const fetcher = (url) => fetch(url).then((res) => res.json())
 const HomepagePost = ({listPost}) => {
+  const { data, error } = useSWR('/api/post', fetcher)
+
 
   const router = useRouter()
   const { t } = useTranslation('common')
-  const [data, setDetail] = useState()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get('/api/subsidize', {
-        params: {},
-      });
-      setDetail(res.data);
-    };
-
-    fetchData();
-  }, []);
+  
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
 
   return (
     <main>
@@ -28,9 +24,6 @@ const HomepagePost = ({listPost}) => {
         <h3 style={{ minHeight: 70 }}>Index Post</h3>
 
         <div>{data && JSON.stringify(data)}</div>
-        <h3 style={{ minHeight: 70 }}>List Post</h3>
-
-        <div>{listPost && JSON.stringify(listPost)}</div>
     </main>
   )
 }
