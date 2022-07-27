@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { baseUrl } from '../../utils/dbConnect';
 
 const HomepagePost = ({listPost}) => {
 
@@ -36,7 +37,7 @@ const HomepagePost = ({listPost}) => {
 
 
 export async function getStaticProps({ locale }){
-  const res = await fetch('http://localhost:3000/api/subsidize')
+  const res = await fetch(`${baseUrl}api/subsidize`)
   const posts = await res.json()
 
   return {

@@ -12,4 +12,10 @@ async function dbConnect() {
   return true;
 }
 
+// url
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://demo-i18n.vercel.app/"
+    : "http://localhost:3000/";
+
 export default dbConnect;
